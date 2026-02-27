@@ -10,28 +10,3 @@ there's some `missing values` in the dataset, and for example in column `order_d
 `modelling_df_v0_1`: is a dataset that merge between raw datas. 1 row = 1 product. 1 order can have multiple row for each product
 
 `order_agg_modeling_v0_1`: is a dataset that has been aggregated to be in a grain version. 1 row = 1 order.
-
-
-# Data Science Note
-kolom yang tidak di pakai `'customer_id','order_id','customer_unique_id','order_status','is_canceled'`
-reason : `kolom primary key, candidate primary key, dan kolom target`
-
-kolom yang ingin di drop, tapi masih di pakai : `'order_delivered_carrier_date','order_delivered_customer_date','order_estimated_delivery_date'`
-reason : apakah mungkin jika kolom date kosong akan di predict cancel ? 
-
-Missing Value pada kolom Data tidak bergantung pada order status canceled.
-ada status Canceled tapi ada order_date (refund ?)
-
-untuk `'total_items','total_order_value','total_freight','avg_item_price'` masih on investigate pola missingnya.
-
-Data Missing : 
-order_delivered_customer_date    2356 [drop Candidate]
-order_delivered_carrier_date     1174 [drop Candidate]
-total_items                       172 [on investigate]
-total_order_value                 172 [on investigate]
-total_freight                     172 [on investigate]
-avg_item_price                    172 [on investigate]
-order_approved_at                 160 [on investigate]
-payment_type                        1 [input unknown]
-total_payment_value                 1 [input 0]
-max_installments                    1 [input 0]
