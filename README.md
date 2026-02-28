@@ -2,10 +2,8 @@
   <img src="./src/order_guardian-logo.png" width="300" alt="Order Guardian Logo">
 </p>
 
-<h1 align="center">Order Guardian</h1>
-
 <p align="center">
-  <i>"Predict the Risk, Secure the Order"</i>
+  <i>"Detecting Risk, Delivering Trust"</i>
 </p>
 
 ---
