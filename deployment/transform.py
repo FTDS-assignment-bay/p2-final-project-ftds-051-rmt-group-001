@@ -40,17 +40,13 @@ def transform_and_load():
     raw_engine = create_engine(RAW_DB)
     processed_engine = create_engine(PROCESSED_DB)
 
-    # -----------------------------
     # 1. READ RAW TABLES
-    # -----------------------------
     orders = pd.read_sql("SELECT * FROM orders", raw_engine)
     order_items = pd.read_sql("SELECT * FROM order_items", raw_engine)
     payments = pd.read_sql("SELECT * FROM order_payments", raw_engine)
     customers = pd.read_sql("SELECT * FROM customers", raw_engine)
 
-    # -----------------------------
-    # 2. AGGREGATION (YOUR LOGIC)
-    # -----------------------------
+    # 2. AGGREGATION
     order_agg = order_items.groupby("order_id").agg(
         total_items=("order_item_id", "count"),
         total_order_value=("price", "sum"),
@@ -84,18 +80,14 @@ def transform_and_load():
     for col in timestamp_cols:
         df_agg[col] = pd.to_datetime(df_agg[col])
 
-    # -----------------------------
     # 3. TRUNCATE TABLES
-    # -----------------------------
     with processed_engine.begin() as conn:
         conn.execute(text("TRUNCATE TABLE fact_orders RESTART IDENTITY CASCADE;"))
         conn.execute(text("TRUNCATE TABLE dim_customer RESTART IDENTITY CASCADE;"))
         conn.execute(text("TRUNCATE TABLE dim_order_status RESTART IDENTITY CASCADE;"))
         conn.execute(text("TRUNCATE TABLE dim_payment_type RESTART IDENTITY CASCADE;"))
 
-    # -----------------------------
     # 4. LOAD DIMENSIONS
-    # -----------------------------
     dim_customer = df_agg[[
         "customer_id",
         "customer_unique_id",
@@ -127,9 +119,7 @@ def transform_and_load():
         index=False
     )
 
-    # -----------------------------
     # 5. MAP SURROGATE KEYS
-    # -----------------------------
     dim_customer_db = pd.read_sql("SELECT * FROM dim_customer", processed_engine)
     dim_status_db = pd.read_sql("SELECT * FROM dim_order_status", processed_engine)
     dim_payment_db = pd.read_sql("SELECT * FROM dim_payment_type", processed_engine)
@@ -138,9 +128,7 @@ def transform_and_load():
     df_agg = df_agg.merge(dim_status_db, on="order_status")
     df_agg = df_agg.merge(dim_payment_db, on="payment_type")
 
-    # -----------------------------
     # 6. PREPARE FACT TABLE
-    # -----------------------------
     fact_df = df_agg[[
         "order_id",
         "customer_key",
