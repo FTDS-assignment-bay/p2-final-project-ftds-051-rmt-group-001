@@ -1,0 +1,6 @@
+pandas
+numpy
+sqlalchemy
+psycopg2-binary
+great_expectations
+python-dotenv
