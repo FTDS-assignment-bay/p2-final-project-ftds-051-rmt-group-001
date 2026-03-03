@@ -1,15 +1,15 @@
 import sys
 import os
 
-sys.path.append("/opt/airflow/src")
+sys.path.append("/opt/airflow/deployment")
 
 import pendulum
 from datetime import datetime
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 
-from deployment.extract import extract_to_raw_db
-from deployment.transform import transform_and_load
+from extract import extract_to_raw_db
+from transform import transform_and_load
 
 local_tz = pendulum.timezone("Asia/Jakarta")
 

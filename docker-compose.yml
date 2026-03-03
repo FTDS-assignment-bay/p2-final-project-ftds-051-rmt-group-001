@@ -13,7 +13,7 @@ x-airflow-common:
     PYTHONPATH: /opt/airflow
   volumes:
     - ./dags:/opt/airflow/dags
-    - ./deployment:/opt/airflow/src
+    - ./deployment:/opt/airflow/deployment
     - ./data:/opt/airflow/data
     - ./requirements.txt:/requirements.txt
   depends_on:
