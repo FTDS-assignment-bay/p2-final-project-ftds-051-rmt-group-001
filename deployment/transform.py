@@ -217,11 +217,11 @@ def transform_and_load():
     
     #Export cleaned files
     df_agg.to_csv(
-        "/opt/airflow/data/cleaned/order_agg_modeling.csv",
+        "/opt/airflow/data/cleaned/order_agg_modeling_v0_1.csv",
         index=False
     )
 
     fact_items_df.to_csv(
-        "/opt/airflow/data/cleaned/order_items_modeling.csv",
+        "/opt/airflow/data/cleaned/modelling_df_v0_1.csv",
         index=False
     )
