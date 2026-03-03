@@ -126,3 +126,42 @@ CREATE TABLE fact_orders (
 
     is_canceled INT
 );
+
+-- =========================
+-- DIMENSION: PRODUCT
+-- =========================
+CREATE TABLE dim_product (
+    product_key SERIAL PRIMARY KEY,
+    product_id VARCHAR UNIQUE,
+    product_category_name VARCHAR,
+    product_name_length INT,
+    product_description_length INT,
+    product_photos_qty INT,
+    product_weight_g NUMERIC,
+    product_length_cm NUMERIC,
+    product_height_cm NUMERIC,
+    product_width_cm NUMERIC
+);
+
+-- =========================
+-- FACT: ORDER ITEMS (Non-Aggregated Star)
+-- Grain: 1 row = 1 order_item
+-- =========================
+CREATE TABLE fact_order_items (
+    order_item_key SERIAL PRIMARY KEY,
+
+    order_id VARCHAR,
+    order_item_id INT,
+
+    customer_key INT REFERENCES dim_customer(customer_key),
+    product_key INT REFERENCES dim_product(product_key),
+    order_status_key INT REFERENCES dim_order_status(order_status_key),
+    payment_type_key INT REFERENCES dim_payment_type(payment_type_key),
+
+    order_purchase_timestamp TIMESTAMP,
+
+    price NUMERIC,
+    freight_value NUMERIC,
+
+    is_canceled INT
+);

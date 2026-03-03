@@ -45,6 +45,9 @@ def transform_and_load():
     order_items = pd.read_sql("SELECT * FROM order_items", raw_engine)
     payments = pd.read_sql("SELECT * FROM order_payments", raw_engine)
     customers = pd.read_sql("SELECT * FROM customers", raw_engine)
+    products = pd.read_sql("SELECT * FROM products", raw_engine)
+    
+    print("Products columns:", list(products.columns))
 
     # 2. AGGREGATION
     order_agg = order_items.groupby("order_id").agg(
@@ -82,7 +85,9 @@ def transform_and_load():
 
     # 3. TRUNCATE TABLES
     with processed_engine.begin() as conn:
+        conn.execute(text("TRUNCATE TABLE fact_order_items RESTART IDENTITY CASCADE;"))
         conn.execute(text("TRUNCATE TABLE fact_orders RESTART IDENTITY CASCADE;"))
+        conn.execute(text("TRUNCATE TABLE dim_product RESTART IDENTITY CASCADE;"))
         conn.execute(text("TRUNCATE TABLE dim_customer RESTART IDENTITY CASCADE;"))
         conn.execute(text("TRUNCATE TABLE dim_order_status RESTART IDENTITY CASCADE;"))
         conn.execute(text("TRUNCATE TABLE dim_payment_type RESTART IDENTITY CASCADE;"))
@@ -118,11 +123,25 @@ def transform_and_load():
         if_exists="append",
         index=False
     )
+    
+    # DIM PRODUCT
+    dim_product = products[[
+        "product_id",
+        "product_category_name"
+    ]].drop_duplicates()
+
+    dim_product.to_sql(
+        "dim_product",
+        processed_engine,
+        if_exists="append",
+        index=False
+    )
 
     # 5. MAP SURROGATE KEYS
     dim_customer_db = pd.read_sql("SELECT * FROM dim_customer", processed_engine)
     dim_status_db = pd.read_sql("SELECT * FROM dim_order_status", processed_engine)
     dim_payment_db = pd.read_sql("SELECT * FROM dim_payment_type", processed_engine)
+    dim_product_db = pd.read_sql("SELECT * FROM dim_product", processed_engine)
 
     df_agg = df_agg.merge(dim_customer_db, on="customer_id")
     df_agg = df_agg.merge(dim_status_db, on="order_status")
@@ -150,5 +169,59 @@ def transform_and_load():
         if_exists="append",
         index=False
     )
+    
+    # =========================
+    # BUILD FACT_ORDER_ITEMS
+    # =========================
+
+    df_items = (
+        orders
+        .merge(order_items, on="order_id", how="left")
+        .merge(payments_agg[["order_id", "payment_type"]], on="order_id", how="left")
+        .merge(customers, on="customer_id", how="left")
+        .merge(products, on="product_id", how="left")
+    )
+
+    df_items = add_is_canceled(df_items)
+
+    # Map surrogate keys
+    df_items = df_items.merge(dim_customer_db, on="customer_id", how="left")
+    df_items = df_items.merge(dim_status_db, on="order_status", how="left")
+    df_items = df_items.merge(dim_payment_db, on="payment_type", how="left")
+    df_items = df_items.merge(dim_product_db, on="product_id", how="left")
+
+    # Prepare fact_order_items
+    fact_items_df = df_items[[
+        "order_id",
+        "order_item_id",
+        "customer_key",
+        "product_key",
+        "order_status_key",
+        "payment_type_key",
+        "order_purchase_timestamp",
+        "price",
+        "freight_value",
+        "is_canceled"
+    ]]
+
+    fact_items_df.to_sql(
+        "fact_order_items",
+        processed_engine,
+        if_exists="append",
+        index=False
+    )
+
+    print("Item-level star schema loaded successfully.")
 
     print("Transformation and load completed successfully.")
+    
+    #Export cleaned files
+    df_agg.to_csv(
+        "/opt/airflow/data/cleaned/order_agg_modeling.csv",
+        index=False
+    )
+
+    fact_items_df.to_csv(
+        "/opt/airflow/data/cleaned/order_items_modeling.csv",
+        index=False
+    )
