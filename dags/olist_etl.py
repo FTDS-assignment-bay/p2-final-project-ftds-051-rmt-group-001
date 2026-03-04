@@ -49,7 +49,7 @@ def check_data_availability():
 with DAG(
     dag_id="olist_star_schema_etl",
     start_date=datetime(2024, 1, 1, tzinfo=local_tz),
-    schedule="0 2 * * *",  # manual trigger
+    schedule="0 2 * * *",
     catchup=False,
     tags=["olist", "etl"],
 ) as dag:
