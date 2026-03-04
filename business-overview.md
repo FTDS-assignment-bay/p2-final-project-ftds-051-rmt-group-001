@@ -16,7 +16,7 @@
 
 As digital commerce continues to grow, order cancellations have become a significant operational challenge. High cancellation rates can result in revenue not being realized, inefficient inventory allocation, and additional logistic costs, particularly in Cash-on-Delivery (COD) transactions where fulfillment costs may already be incurred before payment is secured.
 
-Order Guardian transforms structured transactional data into actionable risk insights through predictive modeling. By identifying high-risk orders immediately after order creation and before the fulfillment process begins, the company can take preventive actions to reduce operational waste and improve revenue realization. The goal of this system is not to eliminate cancellations entirely, but to manage cancellation risk more effectively through data-driven decision support.
+Order Guardian transforms structured transactional data into actionable risk insights through predictive modeling. By identifying high-risk orders immediately after order creation and before the fulfillment process begins, the company can take preventive actions to reduce operational waste and improve revenue realization. The goal of this system is to manage cancellation risk more effectively through data-driven decision support.
 
 ### System Flow Diagram:
 
@@ -25,7 +25,9 @@ Order Guardian transforms structured transactional data into actionable risk ins
 </p>
 
 The diagram above illustrates how Order Guardian integrates into the order checkout process. Each order is evaluated immediately after it is created during the checkout process. 
-The Order Guardian system performs risk scoring before payment options or fulfillment processes proceed, allowing the business to apply preventive policies for orders with higher cancellation risk. Also perform monitoring transaction outcomes through KPI dashboards to analyze the evaluation of system performance.
+The Order Guardian system performs risk scoring before payment options or fulfillment processes proceed, allowing the business to apply preventive policies for orders with higher cancellation risk. The system also records transaction outcomes which can later be monitored through KPI dashboards to evaluate system performance.
+
+The preventive policies may vary depending on the intervention strategies defined by the business. Based on insights from the exploratory data analysis (EDA), one possible intervention is restricting certain payment-related incentives such as the use of vouchers in high-risk orders. Other possible interventions may include limiting the use of Cash-on-Delivery (COD), restricting free-shipping vouchers, or limiting long installment payment options. These policies are only examples and would ultimately depend on business decisions and operational considerations.
 
 ## 2. Business Problem
 
@@ -64,7 +66,7 @@ To estimate potential business impact, we can see a simplified simulation as fol
 
 - Total orders: 100,000
 - Current cancellation rate: 0.6% (600 cancelled orders)
-- Estimated operational cost per cancelled order: $8 (including logistics handling, reverse shipping, processing)
+- Estimated operational cost (including logistics handling, reverse shipping, processing) : $8 per cancelled order (assumptions)
 
 Estimated total operational loss: 600 $\times$ $8 = $4,800
 
@@ -76,7 +78,7 @@ This concentration indicates that a relatively small portion of transactions car
 
 By focusing operational monitoring or preventive measures on this high-risk segment, the company may potentially reduce a portion of cancellation-related operational loss while affecting only a limited portion of total transactions.
 
-Actual operational savings would depend on the intervention strategies defined by the business.
+The use of this system enables the business to apply targeted intervention strategies on selected high-risk orders. For example, the business may restrict certain payment incentives such as voucher usage for orders identified as high risk. However, actual operational savings would depend on the intervention strategies defined by the business.
 
 ## 5. Success Metrics
 
