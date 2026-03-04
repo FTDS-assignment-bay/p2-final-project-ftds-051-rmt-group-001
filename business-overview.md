@@ -20,6 +20,14 @@ Order Guardian transforms structured transactional data into actionable risk ins
 
 The goal of this system is not to eliminate cancellations entirely, but to manage cancellation risk more effectively through data-driven decision support.
 
+### System Flow Diagram:
+
+<p align="center">
+  <img src="./src/order_guardian-project-architecture.png" width="900" alt="Order Guardian Architecture">
+</p>
+
+The diagram above illustrates how Order Guardian integrates into the order checkout process. Each incoming order is evaluated through a risk scoring mechanism to estimate cancellation risk before fulfillment begins. Based on the predicted risk level, the business may apply different operational policies to high-risk orders while monitoring transaction outcomes through KPI dashboards.
+
 ## 2. Business Problem
 
 Despite having detailed transcational data, the company currently may handles cancellations reactively, often after logistics and operational resources have already been allocated.
@@ -38,7 +46,7 @@ Therefore, the core business challenge is balancing two priorities:
 - Reducing cancellation-related operational losses
 - Maintaining normal customer purchasing flow without unnecessary restriction
 
-Order Guardian is designed to help the company apply control only to orders that carry higher cancellation risk, instead of restricting all customers. This allows the business to reduce operational loss while keeping the purchasing process stable for most users.
+Order Guardian provides a risk scoring mechanism that allows the company to consider targeted controls on orders that carry higher cancellation risk. This allows the business to reduce operational loss while keeping the purchasing process stable for most users.
 
 ## 3. Business Objective
 
@@ -46,14 +54,14 @@ The objective of Order Guardian is to reduce operational exposure caused by orde
 
 Specifically, this project aims to:
 - Reduce cancellation rate within identified high-risk orders
-- Apply targeted control measures without broadly restricting all customers
+- Support targeted operational decision making without broadly restricting all customers
 - Maintain stable order conversion while minimizing operational waste 
 
 The system focuses on risk-based management rather than eliminating cancellations entirely.
 
 ## 4. Business Impact Simulation (Conceptual)
 
-To estimate potential business impact, a simulation as follow:
+To estimate potential business impact, we can see a simplified simulation as follow:
 
 - Total orders: 100,000
 - Current cancellation rate: 0.6% (600 cancelled orders)
@@ -61,13 +69,30 @@ To estimate potential business impact, a simulation as follow:
 
 Estimated total operational loss: 600 $\times$ $8 = $4,800
 
-By using Order Guardian, the system ranks orders by risk level. Suppose the top 10% highest-risk orders (10,000 orders in this simulation) accounts to 40% of total cancellations (on this 10,000 orders there are 240 cancelled orders).
+By using Order Guardian, the system ranks orders by cancellation risk. Suppose the top 10% highest-risk orders (10,000 orders in this simulation) accounts to 40% of total cancellations (on this 10,000 orders there are 240 cancelled orders).
 
-If targeted intervention (suppose by disable COD feature, or require prepayment, etc) reduces cancellations in this segment by 25%, then:
-- Prevented cancellations: 60 orders
-- Estimated cost savings: 60 $\times$ $8 = $480
+Estimated operational loss associated with this high-risk segment: 240 $\times$ $8 = $1,920
 
-This represents a potential 10% reduction in total cancellation-related operational loss, while applying intervention only to a limited portion of total transactions.
+This concentration indicates that a relatively small portion of transactions carries a disproportionately higher cancellation risk.
+
+By focusing operational monitoring or preventive measures on this high-risk segment, the company may potentially reduce a portion of cancellation-related operational loss while affecting only a limited portion of total transactions.
+
+Actual operational savings would depend on the intervention strategies defined by the business.
 
 ## 5. Success Metrics
 
+The effectiveness of Order Guardian will be evaluated using both operational and business-level indicators.
+
+Operational metrics:
+
+- Overall cancellation rate
+- Cancellation rate within high-risk segment
+- Changes in cancellation rates after risk-based monitoring
+
+Business-level metrics:
+
+- Estimated reduction in cancellation-related operational loss
+- Order conversion rate stability
+- Net revenue impact
+
+Monitoring dashboards can be used to track these metrics before and after system implementation to measure real-world impact.
