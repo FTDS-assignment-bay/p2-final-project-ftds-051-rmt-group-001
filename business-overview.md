@@ -16,9 +16,7 @@
 
 As digital commerce continues to grow, order cancellations have become a significant operational challenge. High cancellation rates can result in revenue not being realized, inefficient inventory allocation, and additional logistic costs, particularly in Cash-on-Delivery (COD) transactions where fulfillment costs may already be incurred before payment is secured.
 
-Order Guardian transforms structured transactional data into actionable risk insights through predictive modeling. By identifying high-risk orders at checkout, the company can take preventive actions to reduce operational waste and improve revenue realization.
-
-The goal of this system is not to eliminate cancellations entirely, but to manage cancellation risk more effectively through data-driven decision support.
+Order Guardian transforms structured transactional data into actionable risk insights through predictive modeling. By identifying high-risk orders immediately after order creation and before the fulfillment process begins, the company can take preventive actions to reduce operational waste and improve revenue realization. The goal of this system is not to eliminate cancellations entirely, but to manage cancellation risk more effectively through data-driven decision support.
 
 ### System Flow Diagram:
 
@@ -26,7 +24,8 @@ The goal of this system is not to eliminate cancellations entirely, but to manag
   <img src="./src/order_guardian-project-architecture.png" width="900" alt="Order Guardian Architecture">
 </p>
 
-The diagram above illustrates how Order Guardian integrates into the order checkout process. Each incoming order is evaluated through a risk scoring mechanism to estimate cancellation risk before fulfillment begins. Based on the predicted risk level, the business may apply different operational policies to high-risk orders while monitoring transaction outcomes through KPI dashboards.
+The diagram above illustrates how Order Guardian integrates into the order checkout process. Each order is evaluated immediately after it is created during the checkout process. 
+The Order Guardian system performs risk scoring before payment options or fulfillment processes proceed, allowing the business to apply preventive policies for orders with higher cancellation risk. Also perform monitoring transaction outcomes through KPI dashboards to analyze the evaluation of system performance.
 
 ## 2. Business Problem
 
