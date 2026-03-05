@@ -6,7 +6,7 @@
   <i>"Detecting Risk, Delivering Trust"</i>
 </p>
 
-# Order Guardian: Predictive Order Cancellation Risk System    
+# Order Guardian: Predictive Order Cancellation Risk Analytics System    
 A collaborative end-to-end data project combining Data Engineering, Data Analysis, and Data Science to develop a predictive analytics framework for identifying high-risk e-commerce orders.
 
 ## Repository Outline
@@ -161,9 +161,7 @@ HuggingFace Space: [Space-Link](https://huggingface.co/spaces/Heizsenberg/order-
 
 ## Presentation Slides
 
-Project presentation explaining business context, system architecture, and modeling approach:
-
-https://docs.google.com/presentation/d/17xGm80vCwvWv92I0NEuK2LxuqmuJVPEYhLiWFFzEE04/edit?usp=sharing
+Project presentation explaining business context, system architecture, and modeling approach: [Google-Slide-Link](https://docs.google.com/presentation/d/17xGm80vCwvWv92I0NEuK2LxuqmuJVPEYhLiWFFzEE04)
 
 ---
 
