@@ -25,7 +25,7 @@ Order Guardian transforms structured transactional data into actionable risk ins
 </p>
 
 The diagram above illustrates how Order Guardian integrates into the order checkout process. Each order is evaluated immediately after it is created during the checkout process. 
-The Order Guardian system performs risk scoring before payment options or fulfillment processes proceed, allowing the business to apply preventive policies for orders with higher cancellation risk. The system also records transaction outcomes which can later be monitored through KPI dashboards to evaluate system performance.
+The Order Guardian system performs risk scoring before payment options or fulfillment processes proceed, allowing the business to apply preventive policies for orders with higher cancellation risk. The system also records transaction outcomes for KPI monitoring, allowing the business to evaluate system performance over time.
 
 The preventive policies may vary depending on the intervention strategies defined by the business. Based on insights from the exploratory data analysis (EDA), one possible intervention is restricting certain payment-related incentives such as the use of vouchers in high-risk orders. Other possible interventions may include limiting the use of Cash-on-Delivery (COD), restricting free-shipping vouchers, or limiting long installment payment options. These policies are only examples and would ultimately depend on business decisions and operational considerations.
 
@@ -62,7 +62,7 @@ The system focuses on risk-based management rather than eliminating cancellation
 
 ## 4. Business Impact Simulation (Conceptual)
 
-To estimate potential business impact, we can see a simplified simulation as follow:
+To illustrate the potential operational impact, consider a simplified scenario:
 
 - Total orders: 100,000
 - Current cancellation rate: 0.6% (600 cancelled orders)
@@ -70,15 +70,19 @@ To estimate potential business impact, we can see a simplified simulation as fol
 
 Estimated total operational loss: 600 $\times$ $8 = $4,800
 
-By using Order Guardian, the system ranks orders by cancellation risk. Suppose the top 10% highest-risk orders (10,000 orders in this simulation) accounts to 40% of total cancellations (on this 10,000 orders there are 240 cancelled orders).
+With Order Guardian in place, each order is evaluated immediately after it is created. Orders predicted as high-risk can be subject to preventive operational policies, such as restricting certain payment incentives (e.g., vouchers) or limiting Cash-on-Delivery (COD) options.
 
-Estimated operational loss associated with this high-risk segment: 240 $\times$ $8 = $1,920
+Suppose that preventive measures applied to predicted high-risk orders are able to reduce cancellations within this segment by 30%.
 
-This concentration indicates that a relatively small portion of transactions carries a disproportionately higher cancellation risk.
+Estimated prevented cancellations:
 
-By focusing operational monitoring or preventive measures on this high-risk segment, the company may potentially reduce a portion of cancellation-related operational loss while affecting only a limited portion of total transactions.
+600 × 30% = 180 orders
 
-The use of this system enables the business to apply targeted intervention strategies on selected high-risk orders. For example, the business may restrict certain payment incentives such as voucher usage for orders identified as high risk. However, actual operational savings would depend on the intervention strategies defined by the business.
+Estimated operational cost savings:
+
+180 × $8 = $1,440
+
+This simplified illustration shows how early identification of higher-risk orders can help the business reduce operational losses by applying targeted preventive policies before fulfillment processes begin.
 
 ## 5. Success Metrics
 
