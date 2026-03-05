@@ -10,7 +10,7 @@
 
 - [Dataset-Source](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 - [Google-Slides](https://docs.google.com/presentation/d/17xGm80vCwvWv92I0NEuK2LxuqmuJVPEYhLiWFFzEE04/edit?usp=sharing)
-- [Tableau-Dashboard-EDA](https://public.tableau.com/app/profile/maulana.malik.fajri/viz/OrderGuardian/Dashboard4)
+- [Tableau-Dashboard-EDA](https://public.tableau.com/app/profile/maulana.malik.fajri/viz/OrderGuardian/Dashboard1)
 - [HuggingFace-Deployment](https://huggingface.co/spaces/Heizsenberg/order-guardian)
 
 ---
