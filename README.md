@@ -10,7 +10,7 @@
 
 - [Dataset-Source](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 - [Google-Slides](https://docs.google.com/presentation/d/17xGm80vCwvWv92I0NEuK2LxuqmuJVPEYhLiWFFzEE04/edit?usp=sharing)
-- [Tableau-Dashboard-DA](https://public.tableau.com/app/profile/maulana.malik.fajri/viz/FinalProject_17725074492550/Dashboard1)
+- [Tableau-Dashboard-EDA](https://public.tableau.com/app/profile/maulana.malik.fajri/viz/OrderGuardian/Dashboard4)
 - [HuggingFace-Deployment](https://huggingface.co/spaces/Heizsenberg/order-guardian)
 
 ---
@@ -21,10 +21,8 @@ there's some `missing values` in the dataset, and for example in column `order_d
 
 2 data cleaned set:
 
-
-`modelling_df_v0_1`: is a dataset that merge between raw datas. 1 row = 1 product. 1 order can have multiple row for each product
-
-`order_agg_modeling_v0_1`: is a dataset that has been aggregated to be in a grain version. 1 row = 1 order.
+- `modelling_df_v0_1`: is a dataset that merge between raw datas. 1 row = 1 product. 1 order can have multiple row for each product
+- `order_agg_modeling_v0_1`: is a dataset that has been aggregated to be in a grain version. 1 row = 1 order.
 
 ---
 
