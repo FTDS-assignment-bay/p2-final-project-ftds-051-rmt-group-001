@@ -1,0 +1,71 @@
+{
+"model_name": "order_cancellation_model_v1",
+"version": "1.0",
+"target": "is_canceled",
+"description": "Predict cancellation risk for e-commerce orders",
+"features": [
+{
+"name": "total_items",
+"label": "Total Items",
+"type": "int",
+"min": 1,
+"max": 50,
+"default": 1
+},
+{
+"name": "total_order_value",
+"label": "Total Order Value",
+"type": "float",
+"min": 0,
+"step": 0.01
+},
+{
+"name": "total_freight",
+"label": "Total Freight Cost",
+"type": "float",
+"min": 0,
+"step": 0.01
+},
+{
+"name": "avg_item_price",
+"label": "Average Item Price",
+"type": "float",
+"min": 0,
+"step": 0.01
+},
+{
+"name": "customer_state",
+"label": "Customer State",
+"type": "categorical",
+"options": [
+{ "label": "Acre", "value": "AC" },
+{ "label": "Alagoas", "value": "AL" },
+{ "label": "Amapá", "value": "AP" },
+{ "label": "Amazonas", "value": "AM" },
+{ "label": "Bahia", "value": "BA" },
+{ "label": "Ceará", "value": "CE" },
+{ "label": "Distrito Federal", "value": "DF" },
+{ "label": "Espírito Santo", "value": "ES" },
+{ "label": "Goiás", "value": "GO" },
+{ "label": "Maranhão", "value": "MA" },
+{ "label": "Mato Grosso", "value": "MT" },
+{ "label": "Mato Grosso do Sul", "value": "MS" },
+{ "label": "Minas Gerais", "value": "MG" },
+{ "label": "Pará", "value": "PA" },
+{ "label": "Paraíba", "value": "PB" },
+{ "label": "Paraná", "value": "PR" },
+{ "label": "Pernambuco", "value": "PE" },
+{ "label": "Piauí", "value": "PI" },
+{ "label": "Rio de Janeiro", "value": "RJ" },
+{ "label": "Rio Grande do Norte", "value": "RN" },
+{ "label": "Rio Grande do Sul", "value": "RS" },
+{ "label": "Rondônia", "value": "RO" },
+{ "label": "Roraima", "value": "RR" },
+{ "label": "Santa Catarina", "value": "SC" },
+{ "label": "São Paulo", "value": "SP" },
+{ "label": "Sergipe", "value": "SE" },
+{ "label": "Tocantins", "value": "TO" }
+]
+}
+]
+}

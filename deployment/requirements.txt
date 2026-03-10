@@ -1,0 +1,13 @@
+pandas
+streamlit
+plotly
+matplotlib
+seaborn
+scipy
+joblib
+dotenv
+numpy
+scikit-learn==1.6.1
+feature-engine
+xgboost
+lightgbm
