@@ -891,6 +891,19 @@ def eda_page():
     </small>
     """)
 
+    # add Tableau links
+    st.markdown(
+        """
+        <small>
+        Tableau Public Dashboard :
+        <a href="https://public.tableau.com/app/profile/maulana.malik.fajri/viz/OrderGuardian/Dashboard1">
+        Dashboard-Link
+        </a>
+        </small>
+        """,
+        unsafe_allow_html=True
+    )
+
     # call function for load data
     df, df_agg = load_data()
 
